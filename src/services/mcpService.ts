@@ -36,35 +36,3 @@ export async function fetchMCPRoutes(token: string): Promise<MCPRoute[]> {
     throw error;
   }
 }
-
-export async function checkRouteHealth(route: MCPRoute, token: string): Promise<MCPRoute> {
-  if (!route.connected) {
-    return route;
-  }
-
-  try {
-    const healthUrl = `${route.url}/health`;
-    const response = await fetch(healthUrl, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-
-    return {
-      ...route,
-      health: {
-        status: response.ok ? "healthy" : "unhealthy",
-        message: response.ok ? "Service is healthy" : `Error: ${response.status}`,
-      },
-    };
-  } catch (error) {
-    console.error(`Failed to check health for ${route.name}:`, error);
-    return {
-      ...route,
-      health: {
-        status: "unhealthy",
-        message: error instanceof Error ? error.message : "Unknown error",
-      },
-    };
-  }
-}
