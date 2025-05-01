@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import StatusBadge from "./StatusBadge";
 import { MCPRoute } from "../types/mcp";
@@ -37,7 +36,10 @@ const RouteCard: React.FC<RouteCardProps> = ({ route, token }) => {
   }, [route, token]);
 
   const handleConnect = () => {
-    window.location.href = route.url;
+    const currentUrl = encodeURIComponent(window.location.href);
+    const connectEndpoint = `${route.url}/.pomerium/mcp/connect`;
+    const redirectUrl = `${connectEndpoint}${connectEndpoint.includes('?') ? '&' : '?'}redirect=${currentUrl}`;
+    window.location.href = redirectUrl;
   };
 
   return (
