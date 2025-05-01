@@ -59,8 +59,8 @@ const Index = () => {
   return (
     <div className="container mx-auto px-4 py-8 max-w-4xl">
       <Header 
-        title="MCP Client Demo" 
-        subtitle="Manage and monitor your MCP server connections"
+        title="Pomerium MCP Client Demo" 
+        subtitle="Interact with the MCP servers protected by Pomerium"
       />
 
       {error && <ErrorDisplay message={error} />}

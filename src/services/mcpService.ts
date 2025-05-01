@@ -17,7 +17,7 @@ export async function fetchMCPRoutes(token: string): Promise<MCPRoute[]> {
     }
 
     const data: MCPRoutesResponse = await response.json();
-    return data.results;
+    return data.servers;
   } catch (error) {
     console.error("Failed to fetch MCP routes:", error);
     

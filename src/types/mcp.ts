@@ -1,6 +1,8 @@
 
 export interface MCPRoute {
   name: string;
+  description?: string;
+  logo_url?: string;
   connected: boolean;
   url: string;
   health?: {
@@ -10,5 +12,5 @@ export interface MCPRoute {
 }
 
 export interface MCPRoutesResponse {
-  results: MCPRoute[];
+  servers: MCPRoute[];
 }
